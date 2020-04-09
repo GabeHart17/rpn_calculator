@@ -76,6 +76,8 @@ public class Stackulator extends Application {
     UnOpButton atanButton = new UnOpButton("atan", a -> radianMode ? Math.atan(a) : Math.toDegrees(Math.atan(a)));
     gp.add(atanButton, 7, 3);
 
+    ConstantButton piButton = new ConstantButton("pi", Math.PI);
+    gp.add(piButton, 8, 1);
 
 
     Button enter = new Button("enter");
@@ -198,6 +200,18 @@ public class Stackulator extends Application {
           display.setText("ERROR");
         }
         updateStackDisp();
+        showingResult = true;
+      });
+    }
+  }
+
+  class ConstantButton extends Button {
+    private final Double c;
+    public ConstantButton(String symbol, double constant) {
+      super(symbol);
+      c = constant;
+      this.setOnAction(e -> {
+        display.setText(c.toString());
         showingResult = true;
       });
     }
